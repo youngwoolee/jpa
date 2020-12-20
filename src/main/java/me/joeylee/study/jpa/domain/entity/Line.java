@@ -1,9 +1,15 @@
 package me.joeylee.study.jpa.domain.entity;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @Entity
 @Table(indexes = {@Index(name = "UK_line_name",unique = true, columnList="name")})
 public class Line extends BaseEntity{
@@ -16,34 +22,16 @@ public class Line extends BaseEntity{
 
     private String name;
 
-    @OneToMany(mappedBy = "line")
-    private List<Station> stations = new ArrayList<>();
+    @OneToMany(mappedBy = "line", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LineStation> stations = new ArrayList<>();
 
-    protected Line() {
-    }
 
-    public Line(final String name) {
+    public Line(final String name, final String color) {
         this.name = name;
+        this.color = color;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Station> getStations() {
-        return stations;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void addStation(final Station station) {
-        stations.add(station);
-        station.setLine(this);
+    public void updateName(String name) {
+        this.name = name;
     }
 }
