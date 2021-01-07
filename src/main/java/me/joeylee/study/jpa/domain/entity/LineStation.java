@@ -23,7 +23,11 @@ public class LineStation extends BaseEntity {
     @JoinColumn(name = "station_id")
     private Station station;
 
-    public LineStation(Line line, Station station) {
+    @Embedded
+    private PreviousStation previousStation;
+
+    public LineStation(PreviousStation previousStation, Line line, Station station) {
+        this.previousStation = previousStation;
         this.line = line;
         this.station = station;
     }

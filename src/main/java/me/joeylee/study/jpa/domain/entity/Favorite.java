@@ -9,10 +9,17 @@ public class Favorite extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "start__id")
     private Station departureStation;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "member_id")
     private Station arrivedStation;
 
     public Long getId() {

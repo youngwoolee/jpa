@@ -16,8 +16,7 @@ public class Member extends BaseEntity{
 
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "favorite_id")
+    @OneToMany(mappedBy = "member")
     private List<Favorite> favorites = new ArrayList<>();
 
     public Long getId() {
