@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(indexes = {@Index(name = "UK_line_name",unique = true, columnList="name")})
+
 public class Line extends BaseEntity{
 
     @Id
@@ -20,11 +20,17 @@ public class Line extends BaseEntity{
 
     private String color;
 
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "line", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LineStation> stations = new ArrayList<>();
+    private List<LineStation> lineStations = new ArrayList<>();
 
+
+    public void addStationLines(LineStation lineStation) {
+        lineStations.add(lineStation);
+        lineStation.setLine(this);
+    }
 
     public Line(final String name, final String color) {
         this.name = name;

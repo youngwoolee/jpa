@@ -17,7 +17,7 @@ public class PreviousStation {
     @JoinColumn(name = "previous_station_id")
     private Station previousStation;
 
-    private Integer distance;
+    private int distance;
 
     public PreviousStation() {
     }

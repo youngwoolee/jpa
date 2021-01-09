@@ -15,12 +15,12 @@ public class Favorite extends BaseEntity{
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "start__id")
-    private Station departureStation;
+    @JoinColumn(name = "start_station_id")
+    private Station startStation;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Station arrivedStation;
+    @JoinColumn(name = "end_station_id")
+    private Station endStation;
 
     public Long getId() {
         return id;

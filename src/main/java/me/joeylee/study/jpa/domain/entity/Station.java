@@ -32,7 +32,7 @@ public class Station extends BaseEntity{
     public Station(String name, List<Line> lines) {
         this.name = name;
         this.lineStations = lines.stream()
-                .map(line -> new LineStation(line, this))
+                .map(line -> new LineStation(null, line, this))
                 .collect(Collectors.toList());
     }
 
